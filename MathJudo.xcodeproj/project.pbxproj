@@ -13,6 +13,9 @@
 		BA037BA525381E2C000A1BCA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA037BA425381E2C000A1BCA /* Assets.xcassets */; };
 		BA037BA825381E2C000A1BCA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA037BA725381E2C000A1BCA /* Preview Assets.xcassets */; };
 		BA037BAB25381E2D000A1BCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA037BA925381E2D000A1BCA /* LaunchScreen.storyboard */; };
+		BA037BB325381EC7000A1BCA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA037BB225381EC7000A1BCA /* SettingsView.swift */; };
+		BA037BB52538216F000A1BCA /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA037BB42538216F000A1BCA /* Questions.swift */; };
+		BA78E66C253A1D3D00798575 /* ProblemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA78E66B253A1D3D00798575 /* ProblemCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		BA037BA725381E2C000A1BCA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA037BAA25381E2D000A1BCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA037BAC25381E2D000A1BCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA037BB225381EC7000A1BCA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BA037BB42538216F000A1BCA /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
+		BA78E66B253A1D3D00798575 /* ProblemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,8 @@
 		BA037B9D25381E29000A1BCA /* MathJudo */ = {
 			isa = PBXGroup;
 			children = (
+				BA037BB225381EC7000A1BCA /* SettingsView.swift */,
+				BA78E66B253A1D3D00798575 /* ProblemCardView.swift */,
 				BA037B9E25381E29000A1BCA /* AppDelegate.swift */,
 				BA037BA025381E29000A1BCA /* SceneDelegate.swift */,
 				BA037BA225381E29000A1BCA /* ContentView.swift */,
@@ -63,6 +71,7 @@
 				BA037BA925381E2D000A1BCA /* LaunchScreen.storyboard */,
 				BA037BAC25381E2D000A1BCA /* Info.plist */,
 				BA037BA625381E2C000A1BCA /* Preview Content */,
+				BA037BB42538216F000A1BCA /* Questions.swift */,
 			);
 			path = MathJudo;
 			sourceTree = "<group>";
@@ -146,8 +155,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA78E66C253A1D3D00798575 /* ProblemCardView.swift in Sources */,
 				BA037B9F25381E29000A1BCA /* AppDelegate.swift in Sources */,
+				BA037BB325381EC7000A1BCA /* SettingsView.swift in Sources */,
 				BA037BA125381E29000A1BCA /* SceneDelegate.swift in Sources */,
+				BA037BB52538216F000A1BCA /* Questions.swift in Sources */,
 				BA037BA325381E29000A1BCA /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

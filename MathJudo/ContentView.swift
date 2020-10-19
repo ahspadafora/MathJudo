@@ -20,21 +20,21 @@ import SwiftUI
 
 struct ContentView: View {
     let settingsView = SettingsView()
-    @State private var isPresenting = false
+   // @State private var isPresenting = false
     
     
     var body: some View {
+//        let playButton = Button("Play Game") {
+//            self.isPresenting.toggle()
+//        }
         
         VStack {
             Text("Practice your multiplication tables to become a master").font(.largeTitle).lineLimit(3).minimumScaleFactor(0.40)
             SettingsView()
-            
-            Button("Play Game") {
-                self.isPresenting.toggle()
-            }
-            if isPresenting {
-                ProblemCardView(question: settingsView.questions.questions.first!)
-            }
+//            playButton
+//            if isPresenting {
+//                ProblemCardView(question: Question)
+//            }
             Spacer()
         }
         

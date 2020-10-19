@@ -10,18 +10,22 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @State private var multiplier = 5
-    @State private var level: Level = .easy
-    var questions: Questions {
-        return Questions(multiplier: multiplier, level: self.level)
-    }
+    @State private var isPresenting = false
+    
+    
+    @ObservedObject var gameEngine: GameEngine = GameEngine(multiplier: 5, level: .easy)
     
     var body: some View {
-        VStack {
+        let playButton = Button("Play Game") {
+            self.gameEngine.questions = GameEngine.generateQuestions(multiplier: self.gameEngine.multiplier, level: self.gameEngine.level)
+            self.isPresenting = true
+        }
+        
+        return VStack {
             ScrollView(.vertical, showsIndicators: true, content: {
                 ForEach(1..<12) { number in
                     Button(action: {
-                        self.multiplier = number
+                        self.gameEngine.multiplier = number
                     }) {
                         VStack {
                             Text("\(number)")
@@ -39,16 +43,23 @@ struct SettingsView: View {
             }).frame(width: 250, height: 350)
             
             
-//            Stepper(value: $multiplier, in: 1...12, step: 1) {
-//                Text("Pick a times table to practice: \(questions.multiplier)").padding()
-//            }
-            
-            Picker("Choose a level", selection: $level) {
+            Picker("Choose a level", selection: self.$gameEngine.level) {
                 Text("Easy").tag(Level.easy)
                 Text("Medium").tag(Level.medium)
                 Text("Hard").tag(Level.hard)
             }.labelsHidden()
             
+            playButton
+            if isPresenting {
+                ZStack {
+                    ForEach(0..<gameEngine.questions.count, id: \.self) { index in
+                        ProblemCardView(question: self.gameEngine.questions[index]) {
+                            self.gameEngine.questions.remove(at: index)
+                            if self.gameEngine.questions.count == 0 { self.isPresenting.toggle() }
+                        }
+                    }
+                }
+            }
         }
         
     }
@@ -56,6 +67,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(gameEngine: GameEngine(multiplier: 5, level: .easy))
     }
 }

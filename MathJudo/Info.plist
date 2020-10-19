@@ -56,5 +56,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Carnetdevoyage.ttf</string>
+		<string>PEEPS.TTF</string>
+	</array>
 </dict>
 </plist>

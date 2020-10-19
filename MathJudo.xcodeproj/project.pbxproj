@@ -16,6 +16,8 @@
 		BA037BB325381EC7000A1BCA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA037BB225381EC7000A1BCA /* SettingsView.swift */; };
 		BA78E66C253A1D3D00798575 /* ProblemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA78E66B253A1D3D00798575 /* ProblemCardView.swift */; };
 		BA78E66E253B890800798575 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA78E66D253B890800798575 /* GameEngine.swift */; };
+		BA78E671253D7A8600798575 /* PEEPS.TTF in Resources */ = {isa = PBXBuildFile; fileRef = BA78E66F253D7A7900798575 /* PEEPS.TTF */; };
+		BA78E673253D8C2300798575 /* Carnetdevoyage.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA78E672253D8C2300798575 /* Carnetdevoyage.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		BA037BB225381EC7000A1BCA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BA78E66B253A1D3D00798575 /* ProblemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemCardView.swift; sourceTree = "<group>"; };
 		BA78E66D253B890800798575 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		BA78E66F253D7A7900798575 /* PEEPS.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = PEEPS.TTF; sourceTree = "<group>"; };
+		BA78E672253D8C2300798575 /* Carnetdevoyage.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Carnetdevoyage.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 				BA037BA225381E29000A1BCA /* ContentView.swift */,
 				BA037BA425381E2C000A1BCA /* Assets.xcassets */,
 				BA037BA925381E2D000A1BCA /* LaunchScreen.storyboard */,
+				BA78E670253D7A7E00798575 /* Fonts */,
 				BA037BAC25381E2D000A1BCA /* Info.plist */,
 				BA037BA625381E2C000A1BCA /* Preview Content */,
 			);
@@ -82,6 +87,15 @@
 				BA037BA725381E2C000A1BCA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BA78E670253D7A7E00798575 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				BA78E672253D8C2300798575 /* Carnetdevoyage.ttf */,
+				BA78E66F253D7A7900798575 /* PEEPS.TTF */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +157,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA037BAB25381E2D000A1BCA /* LaunchScreen.storyboard in Resources */,
+				BA78E673253D8C2300798575 /* Carnetdevoyage.ttf in Resources */,
 				BA037BA825381E2C000A1BCA /* Preview Assets.xcassets in Resources */,
+				BA78E671253D7A8600798575 /* PEEPS.TTF in Resources */,
 				BA037BA525381E2C000A1BCA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

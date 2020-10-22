@@ -53,12 +53,15 @@ class GameEngine: ObservableObject {
     @Published var level: Level
     @Published var questions: [Question]
     
+    @Published var correctAnswers: Int
+    
     var multipliers: [Int] = Array(1...12)
 
     init(multiplierIndex: Int, level: Level) {
         self.multiplierIndex = multiplierIndex
         self.level = level
         self.questions = GameEngine.generateQuestions(multiplier: multipliers[multiplierIndex], level: level)
+        self.correctAnswers = 0
     }
     
     

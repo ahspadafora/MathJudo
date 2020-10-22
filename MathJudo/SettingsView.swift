@@ -57,18 +57,22 @@ struct SettingsView: View {
                     }.pickerStyle(SegmentedPickerStyle())
                         .font(Font.custom("Carnetdevoyage", size: 18))
                         .foregroundColor(Color.black)
+                        
                     playButton
                 } else {
+                    Text("Score: \(self.gameEngine.correctAnswers)").font(.title).foregroundColor(Color.black)
                     ZStack {
+                        
                         ForEach(0..<gameEngine.questions.count, id: \.self) { index in
-                            ProblemCardView(question: self.gameEngine.questions[index]) {
+                            ProblemCardView(question: self.gameEngine.questions[index]) { problemSolved in
                                 self.gameEngine.questions.remove(at: index)
-                                
+                                if problemSolved { self.gameEngine.correctAnswers += 1 }
                                 if self.gameEngine.questions.count == 0 { self.isPresenting.toggle() }
                             }.transition(.move(edge: .leading))
                             
                         }
                     }.transition(.slide)
+                    
                     Button(action: {
                         self.isPresenting = false
                     }) {

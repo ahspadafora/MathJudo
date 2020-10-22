@@ -10,12 +10,12 @@ import SwiftUI
 
 struct ProblemCardView: View {
     
-    init(question: Question, problemSolved: @escaping ()->()) {
+    init(question: Question, problemSolved: @escaping (_ answeredCorrectly: Bool)->()) {
         self.question = question
         self.problemSolved = problemSolved
     }
     
-    var problemSolved: ()->()
+    var problemSolved: (_ answeredCorrectly: Bool)->()
     var question: Question
     
     let answerButtonBackgroundColor: Color =
@@ -54,11 +54,8 @@ struct ProblemCardView: View {
                     Button(action: {
                         self.selectedAnAnswer = true
                         self.selectedIndex = index
-                        if self.userAnsweredCorrectly(selectedIndex: index) {
-                            print("User selected the right answer")
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                self.problemSolved()
-                            }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.problemSolved(self.userAnsweredCorrectly(selectedIndex: index))
                         }
                     }) {
                         Text(String(self.question.answers[index]))
@@ -80,6 +77,6 @@ struct ProblemCardView: View {
 
 struct ProblemCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ProblemCardView(question: Question(id: 0, multiplier: 5, multiplicand: 6, product: 5 * 6, answers: []), problemSolved: { return } )
+        ProblemCardView(question: Question(id: 0, multiplier: 5, multiplicand: 6, product: 5 * 6, answers: []), problemSolved: { _ in return } )
     }
 }

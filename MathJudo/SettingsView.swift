@@ -6,6 +6,10 @@
 //  Copyright © 2020 Amber Spadafora. All rights reserved.
 //
 
+// <a href='https://www.freepik.com/vectors/frame'>
+// Frame vector created by macrovector - www.freepik.com</a>
+
+
 import SwiftUI
 
 struct SettingsView: View {
@@ -13,59 +17,67 @@ struct SettingsView: View {
     @State private var isPresenting = false
     @ObservedObject var gameEngine: GameEngine = GameEngine(multiplierIndex: 4, level: .easy)
     
+    func resetGameEngine() {
+        self.gameEngine.questions = GameEngine.generateQuestions(multiplier: self.gameEngine.multipliers[self.gameEngine.multiplierIndex], level: self.gameEngine.level).shuffled()
+    }
+    
     var body: some View {
         
         let playButton = Button(action:{
-            self.gameEngine.questions = GameEngine.generateQuestions(multiplier: self.gameEngine.multipliers[self.gameEngine.multiplierIndex], level: self.gameEngine.level)
+            self.resetGameEngine()
             self.isPresenting = true
         }) {
-            Image("startButton").renderingMode(.original)
+            Image("playbutton").renderingMode(.original)
         }
         
         return VStack {
-            
             VStack {
                 if !isPresenting {
-                    Text("CHOOSE A TIMES TABLE TO PRACTICE")
-                        .font(.custom("Carnetdevoyage", size: 18))
-                        .foregroundColor(Color.black)
-                        .multilineTextAlignment(.center)
-                        .frame(width: 250)
-                    Picker("Choose a times table to practice", selection: self.$gameEngine.multiplierIndex) {
-                        ForEach(1..<13) { number in
-                            Text("\(number)").font(Font.custom("PEEPS", size: 28))
+                    ZStack {
+                        Image("buttonBackground")
+                        VStack {
+                            Text("CHOOSE A TIMES TABLE TO PRACTICE")
+                                .font(.custom("Carnetdevoyage", size: 18))
+                                .foregroundColor(Color.black)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 75.0)
+                                .frame(width: 230.0)
+                            Picker("", selection: self.$gameEngine.multiplierIndex) {
+                                ForEach(1..<13) { number in
+                                    Text("\(number)").font(Font.custom("PEEPS", size: 18))
+                                }
+                            }.labelsHidden()
                         }
-                    }.labelsHidden()
-                    Picker("Choose a level", selection: self.$gameEngine.level) {
+                    }.transition(.slide)
+                    
+                    Picker("", selection: self.$gameEngine.level) {
                         Text("Easy").tag(Level.easy)
                         Text("Medium").tag(Level.medium)
                         Text("Hard").tag(Level.hard)
-                    }.pickerStyle(SegmentedPickerStyle()).font(.title)
+                    }.pickerStyle(SegmentedPickerStyle())
+                        .font(Font.custom("Carnetdevoyage", size: 18))
+                        .foregroundColor(Color.black)
                     playButton
                 } else {
-                    
                     ZStack {
                         ForEach(0..<gameEngine.questions.count, id: \.self) { index in
                             ProblemCardView(question: self.gameEngine.questions[index]) {
-                                
                                 self.gameEngine.questions.remove(at: index)
                                 
                                 if self.gameEngine.questions.count == 0 { self.isPresenting.toggle() }
-                            }
+                            }.transition(.move(edge: .leading))
+                            
                         }
-                        
-                    }
-                    Button("Main Menu") {
+                    }.transition(.slide)
+                    Button(action: {
                         self.isPresenting = false
+                    }) {
+                        Image("stopButton").renderingMode(.original)
                     }
                 
                 }
             }.animation(.default)
-            
-            
         }
-        
-        
     }
 }
 

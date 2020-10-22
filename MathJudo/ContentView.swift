@@ -30,10 +30,8 @@ struct ContentView: View {
         ZStack {
             Image("background").resizable().scaledToFill().edgesIgnoringSafeArea(.all)
             VStack {
-                
                 SettingsView().frame(width: 370).padding()
-                
-                Spacer()
+                //Spacer()
             }
         }
         

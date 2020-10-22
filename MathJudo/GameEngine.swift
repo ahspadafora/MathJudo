@@ -52,6 +52,7 @@ class GameEngine: ObservableObject {
     @Published var multiplierIndex: Int
     @Published var level: Level
     @Published var questions: [Question]
+    
     var multipliers: [Int] = Array(1...12)
 
     init(multiplierIndex: Int, level: Level) {

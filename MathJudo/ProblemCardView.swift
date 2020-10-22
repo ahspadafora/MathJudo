@@ -13,59 +13,67 @@ struct ProblemCardView: View {
     init(question: Question, problemSolved: @escaping ()->()) {
         self.question = question
         self.problemSolved = problemSolved
-        //self.answers = ProblemCardView.generateAnswers(product: question.product).shuffled()
     }
     
     var problemSolved: ()->()
     var question: Question
-    //var answers: [Int]
     
-    let colors: [Color] = [
-    Color(red: 255/255, green: 226/255, blue: 89/255),
-    Color(red: 255/255, green: 168/255, blue: 81/255)]
+    let answerButtonBackgroundColor: Color =
+        Color(red: 233/255, green: 208/255, blue: 158/255)
     
+    func userAnsweredCorrectly(selectedIndex: Int?) -> Bool {
+        guard let selectedIndex = selectedIndex else { return false }
+        return self.question.answers[selectedIndex] == self.question.product
+    }
     
-    
-    
-    
+    @State private var selectedAnAnswer: Bool = false
+    @State private var selectedIndex: Int?
     
     var body: some View {
-        ZStack {
-            LinearGradient(gradient: Gradient(colors: colors),
-            startPoint: .top,
-            endPoint: .bottom).edgesIgnoringSafeArea(.all)
+        let problem = Text("\(question.multiplier) X \(question.multiplicand) = ?")
+        .font(Font.custom("Carnetdevoyage", size: 48))
+        .foregroundColor(.black)
+        
+        let correctAnswer = Image("menuButton")
+        //let incorrectAnswer = Image("wrongButton")
+        
+       return VStack(spacing: 35) {
+            ZStack {
+                Image("buttonBackground")
+                if selectedAnAnswer {
+                    if userAnsweredCorrectly(selectedIndex: self.selectedIndex) {
+                        correctAnswer.transition(.scale)
+                    } else {
+                        problem.transition(.scale)
+                    }
+                } else { problem }
+            }
             
-            VStack(spacing: 35) {
-                Text("\(question.multiplier) X \(question.multiplicand) = ?")
-                .font(Font.custom("Carnetdevoyage", size: 53))
-                    .frame(width: 300, height: 150)
-                .foregroundColor(.white)
-                .background(Color.green)
-                .clipShape(RoundedRectangle(cornerRadius: 20, style: .circular))
-                
-                HStack(spacing: 50) {
-                    ForEach(0..<self.question.answers.count) { index in
-                        Button(action: {
-                            if self.question.answers[index] == self.question.product {
-                                print("User selected the right answer")
+            HStack(spacing: 20) {
+                ForEach(0..<self.question.answers.count) { index in
+                    Button(action: {
+                        self.selectedAnAnswer = true
+                        self.selectedIndex = index
+                        if self.userAnsweredCorrectly(selectedIndex: index) {
+                            print("User selected the right answer")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 self.problemSolved()
                             }
-                        }) {
-                            Text("\(self.question.answers[index])")
-                            .font(Font.custom("Carnetdevoyage", size: 48))
-                            .bold()
-                            .frame(width: 70, height: 70)
-                            .foregroundColor(.black)
-                            .background(Color.green)
-                            .clipShape(Circle())
                         }
-
+                    }) {
+                        Text(String(self.question.answers[index]))
+                            .font(Font.custom("Carnetdevoyage", size: 38))
+                            .bold()
+                            .frame(width: 130, height: 70)
+                            .foregroundColor(.black)
+                            .background(self.answerButtonBackgroundColor)
+                            .clipShape(Circle())
                     }
+                    
                 }
             }
-        }.frame(width: 370, height: 400)
-            .clipShape(RoundedRectangle(cornerRadius: 20, style: .circular))
-            .shadow(radius: 2.0)
+        }
+        
         
     }
 }
